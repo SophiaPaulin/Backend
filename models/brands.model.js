@@ -1,4 +1,4 @@
-const mangoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const BrandSchema = mongoose.Schema({
     name: {
