@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 const { TokenChecker } = require('../middleware/middleware');
 
 AuthRouter.post('/create', (req, res) => {
-    const userExists = User.findOne({email: req.body.email});
+    try {
+        const userExists = User.findOne({email: req.body.email});
     console.log({userExists})
 
     bcrypt.hash(req.body.password, 10, async (err, hash) => {
@@ -31,6 +32,10 @@ AuthRouter.post('/create', (req, res) => {
             })
         }
     })
+        
+    } catch (error) {
+        
+    }
 
 })
 
