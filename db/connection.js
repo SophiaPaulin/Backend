@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
+
 const configureDb = async () =>{
-    const URI = "mongodb://localhost:27017/testings";
+    const URI = "mongodb+srv://sobiyamary622:aqnqaJ7Ab048iK9y@cluster0.lu92g.mongodb.net/testing";
     
     try {
-        await mongoose.connect(process.env.MONGO_DB);
+        await mongoose.connect(URI);
         console.log("Mongo Db connectivity success");
     } catch (error) {
         console.log(error)
