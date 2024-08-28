@@ -5,8 +5,8 @@ const { TokenChecker } = require('../middleware/middleware');
 AuthRouter.post('/create', TokenChecker, async (req, res) => {
     try {
             const brandData = {
-                name: req.body.name,
-                email: req.body.emai,
+                name: req.body.brandName,
+                email: req.body.email,
                 phoneNumber: req.body.phoneNumber,
                 branch: req.body.branch ,
                 address: {
