@@ -28,7 +28,7 @@ const OrderSchema = mongoose.Schema({
         default: 'Placed',
     },
     duration: {
-        type: Number,
+        type: String,
     }
 }, {
     timestamps: true
