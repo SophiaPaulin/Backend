@@ -13,7 +13,7 @@ AuthRouter.post('/create', (req, res) => {
         if (err) return res.status(500).json({error: 'Something went wrong!'});
         if (hash) {
             const newUser = {
-                name: req.body.name,
+                name: req.body.name || null,
                 email: req.body.email,
                 password: hash,
                 isAdmin: req.body.isAdmin || true,
@@ -34,6 +34,10 @@ AuthRouter.post('/create', (req, res) => {
     })
         
     } catch (error) {
+        return res.status(500).json({
+            status:false,
+            message: 'Internal server error!'
+        })
         
     }
 
@@ -77,6 +81,33 @@ AuthRouter.post('/signin', async (req, res) => {
         
     }
     })
+
+AuthRouter.post('/register', async (req, res) => {
+    
+    let user = await User.findOne({ email: req.body.email })
+    if (user) {
+        return res.status(400).send('User already exisits. Please sign in')
+    } else {
+        try {
+            const salt = await bcrypt.genSalt(10)
+            const password = await bcrypt.hash(req.body.password, salt)
+            const user = new User({
+                name: req.body.name,
+                email: req.body.email,
+                password: password
+            })
+            await user.save()
+            return res.status(201).json({
+                user,
+                success: true,
+                userId: user._id,
+                message: 'Registered successfully!'
+            })
+        } catch (err) {
+            return res.status(400).json({ message: err.message })
+        }
+    }
+})
 
 
 AuthRouter.get('/test', TokenChecker, (req, res) => {
