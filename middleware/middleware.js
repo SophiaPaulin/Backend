@@ -1,24 +1,18 @@
-const jwt = require('jsonwebtoken');
-const UserModel = require('../models/users/users.model');
+const jwt = require("jsonwebtoken");
 
-function TokenChecker(req, res, next) {
-    try {
-        if (req.headers.authorization) {
-            const token = jwt.verify(req.headers.authorization, process.env.SECRET_KEY);
-            if (token) {
-                next();
-            }
-        } else {
-            return res.status(500).json({
-                message: "Token is missing"
-            })
-        }
-    } catch (error) {
-        return res.status(500).json({
-            message: "Something went wrong",
-            error
-        })
-    }
-}
+const verifyToken = (req, res, next) => {
+	const token = req.headers.authorization;
+	if (token) {
+		// const token = authHeader;
+		jwt.verify(token, process.env.SECRET_KEY, async (err, user) => {
+			if (err) return res.status(403).json({ status: false, message: "invalid token" });
+			req.user = user;
+			console.log({ user: req.user });
+			next();
+		});
+	} else {
+		return res.status(404).json({ status: false, message: "Token is missing" });
+	}
+};
 
-module.exports ={TokenChecker}
+module.exports = { verifyToken };
