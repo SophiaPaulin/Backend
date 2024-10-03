@@ -36,7 +36,7 @@ module.exports.createProduct = async (req, res) => {
 module.exports.getAllProducts = async (req, res) => {
 	try {
 		const response = await Product.find();
-		return res.status(201).json({
+		return res.status(200).json({
 			message: "Product fetched successfully",
 			result: response,
 			status: true,

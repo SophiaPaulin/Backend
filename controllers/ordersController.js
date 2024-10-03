@@ -28,7 +28,7 @@ module.exports.createOrder = async (req, res) => {
 module.exports.getAllOrders = async (req, res) => {
 	try {
 		const response = await Orders.find();
-		return res.status(201).json({
+		return res.status(200).json({
 			message: "Orders fetched successfully",
 			result: response,
 			status: true,
