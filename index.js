@@ -29,15 +29,8 @@ app.use(cors(options));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, limit: "500mb" }));
 app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header(
-		"Access-Control-Allow-Methods",
-		"GET,HEAD,OPTIONS,POST,PUT,DELETE"
-	);
-	res.header(
-		"Access-Control-Allow-Headers",
-		"Origin, x-Requested-With, Content-Type, Accept, authorization"
-    );
+	res.header("Access-Control-Allow-Origin", "https://sophia-front-end-code.netlify.app");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
 
