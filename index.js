@@ -19,7 +19,7 @@ mongoose
 	.catch((err) => console.log(err));
 
 const options = {
-	origin: ["https://sophia-front-end-code.netlify.app", "http://localhost:5173"],
+	origin: ["https://sophia-vehicle-care.netlify.app", "http://localhost:5173"],
 	AccessControlAllowOrigin: '*',
 	// origin: '*',
 	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -29,7 +29,7 @@ app.use(cors(options));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, limit: "500mb" }));
 app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "https://sophia-front-end-code.netlify.app");
+	res.header("Access-Control-Allow-Origin", "https://sophia-vehicle-care.netlify.app");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
