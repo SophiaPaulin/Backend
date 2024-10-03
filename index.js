@@ -19,7 +19,7 @@ mongoose
 	.catch((err) => console.log(err));
 
 const options = {
-	origin: "https://sophia-front-end-code.netlify.app",
+	origin: ["https://sophia-front-end-code.netlify.app", "http://localhost:5173"],
 	AccessControlAllowOrigin: '*',
 	// origin: '*',
 	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
