@@ -18,9 +18,16 @@ mongoose
 	.then(() => console.log("Db connected"))
 	.catch((err) => console.log(err));
 
+const options = {
+	origin: "https://sophia-front-end-code.netlify.app",
+	AccessControlAllowOrigin: '*',
+	// origin: '*',
+	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+}
+app.use(cors(options));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, limit: "500mb" }));
-app.use(cors());
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header(
